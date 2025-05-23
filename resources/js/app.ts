@@ -1,4 +1,17 @@
+import axios from 'axios';
 import '../css/app.css';
+
+axios.defaults.baseURL = '/api';
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+// Optional: add CSRF token if using Sanctum
+const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+if (token) {
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = token;
+}
+
+// Make axios available globally (optional)
+window.axios = axios;
 
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';

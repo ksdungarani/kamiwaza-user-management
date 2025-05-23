@@ -11,5 +11,10 @@ Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('users', function () {
+    return Inertia::render(component: 'UsersList');
+})->middleware(['auth', 'verified'])->name('users');
+
+
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
